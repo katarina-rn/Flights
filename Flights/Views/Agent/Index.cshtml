@@ -1,0 +1,41 @@
+﻿@model List<Flights.Models.ViewModels.FlightVM>
+<div class="container">
+    <div class="row pb-3 col-12">
+        <h3>Predstojeći letovi</h3>
+    </div>
+    <div class="row pb-3">
+        <div class="col-12">
+            <table class="table-striped table table-bordered">
+                <thead class="table-primary">
+                    <tr>
+                        <th class="col-2">Od</th>
+                        <th class="col-2">Do</th>
+                        <th class="col-2">Broj slobodnih mesta</th>
+                        <th class="col-3">Broj presedanja</th>
+                        <th class="col-3">Datum leta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var flight in Model)
+                    {
+                        <tr>
+                            <td>@flight.DestinationFrom.Name</td>
+                            <td>@flight.DestinationTo.Name</td>
+                            @if (flight.AvailableSeats < 5)
+                            {
+                                <td class="table-danger">@flight.AvailableSeats</td>
+                            }
+                            else
+                            {
+                                <td>@flight.AvailableSeats</td>
+                            }
+                            <td>@flight.NumberOfConnections</td>
+                            <td>@flight.FlightDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

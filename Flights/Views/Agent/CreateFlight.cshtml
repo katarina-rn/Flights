@@ -1,0 +1,55 @@
+﻿@model Flights.Models.ViewModels.FlightVM
+<div class="container">
+    <div class="row col-10">
+        <section id="registerForm">
+            <form method="post" asp-action="CreateFlight" asp-controller="Agent">
+                <div asp-validation-summary="ModelOnly"></div>
+                <h4 class="row">Popunite detalje novog leta</h4>
+                <hr />
+                <div class="form-group row pb-3">
+                    <label class="form-label mt-4 col-md-9" asp-for="DestinationFrom">Od:</label>
+                    <div class="col-md-4">
+                        <select type="text" asp-for="DestinationFrom.Id" class="form-select" asp-items="ViewBag.Destinations"></select>
+                        <span asp-validation-for="DestinationFrom.Id" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row pb-3">
+                    <label class="form-label col-md-9" asp-for="DestinationTo">Do:</label>
+                    <div class="col-md-4">
+                        <select type="text" asp-for="DestinationTo.Id" class="form-select" asp-items="ViewBag.Destinations"></select>
+                        <span asp-validation-for="DestinationTo.Id" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row pb-3">
+                    <label class="form-label col-md-9 pb-2" asp-for="AvailableSeats">Broj slobodnih mesta:</label>
+                    <div class="col-md-4">
+                        <input asp-for="AvailableSeats" class="form-control" />
+                        <span asp-validation-for="AvailableSeats" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row pb-3">
+                    <label class="form-label col-md-9 pb-2" asp-for="NumberOfConnections">Broj presedanja:</label>
+                    <div class="col-md-4">
+                        <input asp-for="NumberOfConnections" class="form-control" />
+                        <span asp-validation-for="NumberOfConnections" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row pb-3">
+                    <label class="form-label col-md-9 pb-2" asp-for="FlightDate">Datum leta:</label>
+                    <div class="col-md-4">
+                        <input asp-for="FlightDate" class="form-control" />
+                        <span asp-validation-for="FlightDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group pb-3">
+                    <div class="col-md-8 ">
+                        <input type="submit" value="Dodaj let" class="btn btn-success col-md-4" />
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

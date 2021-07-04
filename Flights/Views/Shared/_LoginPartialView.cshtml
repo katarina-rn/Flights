@@ -1,0 +1,47 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<Flights.Models.ApplicationUser> signInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> UserManager
+@if (signInManager.IsSignedIn(User))
+{
+<form method="post" id="logoutForm" asp-action="Logout" asp-controller="Account">
+    <input type="hidden" value="@UserManager.GetUserId(User)" id="userId" />
+    <ul class="navbar-nav flex-grow-1">
+        @if (User.IsInRole("Agent"))
+        {
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Agent" asp-action="CreateFlight">Dodaj let</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" onclick="getReservations()" asp-controller="Agent" asp-action="Reservations">Pregled rezervacija</a>
+            </li>
+        }
+        @if (User.IsInRole("Posetilac"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" onclick="visitorReservations()" asp-controller="Visitor" asp-action="Reservations">Moji letovi</a>
+            </li>
+        }
+        @if (User.IsInRole("Administrator"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Registruj novog korisnika</a>
+            </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+        </li>
+    </ul>
+</form>
+}
+else
+{
+<ul class="nav nabar-nav">
+    <li class="nav-item">
+        <a class="nav-link text-dark" id="loginLink" asp-controller="Account" asp-action="Login">Login</a>
+    </li>
+</ul>
+}
+
+
+
+

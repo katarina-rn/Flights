@@ -1,0 +1,24 @@
+﻿<h1>Pretraži letove</h1>
+<div class="container">
+    <div class="row pb-3">
+        <div class="form-group col-md-4">
+            <label class="form-label">Od:</label>
+            <select type="text" class="form-select" id="desFrom" asp-items="ViewBag.Destinations"></select>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="form-label">Do:</label>
+            <select type="text" class="form-select" id="desTo" asp-items="ViewBag.Destinations"></select>
+        </div>
+    </div>
+    <div class="form-row pb-3">
+        <div class="form-group col-md-4">
+            <label class="form-label">Datum leta:</label>
+            <input type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control col-md-4" id="dateFlight">
+        </div>
+    </div>
+    <button class="btn btn-primary" onclick="searchFlights();">Pretraži</button>
+</div>
+<div class="pt-3" id="searchHeader"></div>
+<div class="pt-3" id="searchResults">
+
+</div>

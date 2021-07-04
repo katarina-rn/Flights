@@ -1,0 +1,55 @@
+﻿@model Flights.Models.ViewModels.RegisterVM
+<div class="container">
+    <div class="row col-12">
+        <section id="registerForm">
+            <form id="account" method="post" asp-action="Register" asp-controller="Account">
+                <h4 class="row ml-3">Popunite formu kako biste registrovali novog korisnika</h4>
+                <hr />
+                <div asp-validation-summary="All"></div>
+                <div class="form-group row">
+                    <label class="form-label col-md-9" asp-for="Name"></label>
+                    <div class="col-md-4">
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row pb-3">
+                    <label class="form-label col-md-9" asp-for="Email"></label>
+                    <div class="col-md-4">
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row pb-3">
+                    <label class="form-label col-md-9" asp-for="Password"></label>
+                    <div class="col-md-4">
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row pb-3">
+                    <label class="form-label col-md-9" asp-for="ConfirmPassword"></label>
+                    <div class="col-md-4">
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row pb-3">
+                    <label class="form-label col-md-9" asp-for="RoleName"></label>
+                    <div class="col-md-4">
+                        <select asp-for="RoleName" asp-items="@Flights.Helper.Helper.GetRolesForDropDown()" class="form-select"></select>
+                        <span asp-validation-for="RoleName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row pb-3">
+                    <div class="col-md-4">
+                        <input type="submit" value="Register" class="btn btn-success col-md-12" />
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
